@@ -1,12 +1,29 @@
-# Title: Urban & Rural Divides in U.S. Food Insecurity
+# Urban & Rural Divides in U.S. Food Insecurity
 
-# Contributors: Lily Rybka, Lara Terpetschnig (Team: Canaries)
+## Lily Rybka, Lara Terpetschnig (Team: Canaries)
 
-# Summary: []
+# Summary
+## Motivation
+We have a history of volunteering at food pantries and food banks in the local community. We are both connected to the University YMCA which hosts community meals through UniPlace Church and Interfaith in Action, which Lily is a member of. Lara is a member of another Y-affiliated organization, Project4Less, which is a food recovery club. We wanted to learn more about food insecurity on a larger scale and we felt that our experiences working with these organizations would help inform our approach to the data. We had previously visited the Feeding America website to look at the food insecurity rate for Champaign County, which is how we found the Map the Meal Gap dataset. 
+## Description
+In this project, we clean and combine two datasets related to food access and food insecurity to get a more holistic view of the barriers that exist in America. Our county-level dataset is then visualized to show how different indicators of need overlap. We used a linear regression model to compare the impact of rural and urban designations and population on food insecurity. All our results are carefully documented to be fully reproducible.  
+## Research Questions
+* Do families living in rural areas have higher rates of food insecurity compared to families living in urban areas?
+  * Does the overall trend hold up when looking at the data state-by-state?
+  * Is population count (per county) a better or worse indicator of food insecurity compared to urban and rural designations?
+* How does food access (measured by the Food Access Research Atlas) and food insecurity (measured by Map the Meal Gap) overlap?
+  * Do each of these datasets identify similar geographic areas of concern?
+  * How can these two datasets be combined to create a more holistic view of food insecurity?
+* Which counties in the US suffer from the highest rates of food insecurity?
+  * What cofactors are contributing to the situation?
+  * What suggestions could be made to improve the situation?
+## Findings
+Each dataset has valuable information that we were able to compare when they were combined. Food access and food insecurity have some overlap but access does not account for all cases of food insecurity. We found that counties that are designated as rural have a high rate of food insecurity compared to counties designated as urban. Furthermore, the Rural Urban Continuum Code is a better indicator of food insecurity compared to population per county. Finally, counties in Southern states tend to have the worst rates of food insecurity, with Mississippi having the highest average food insecurity rate out of the 50 states. 
 
-# Data profiles: 
 
-## Food Atlas (FARA) Data Profile
+# Data profile 
+
+## Food Access Research Atlas (FARA)
 
 ### Structure
 
@@ -93,11 +110,54 @@ The Atlas’s `Urban`/`Rural` field allows for comparison of food‑access indic
 
 - **Identifying counties**: By aggregating FARA tract flags to the county level, counties can be ranked by the share of residents living in LILA tracts. 
 - **Co‑factors**: FARA includes several variables that can serve as  co‑factors: poverty rate, median family income, vehicle availability, and group‑quarters.
-- **Suggestions**: The vehicle‑availability variables could useful to provide suggestions. If a rural county has high food insecurity, high LILA percentages, and a high share of zero‑vehicle households, a policy recommendation might combine public transit and grocery‑store investment. Another suggestion could be that if poverty rate is the dominant co‑factor, income‑support programs may be an effective policy. 
+- **Suggestions**: The vehicle‑availability variables could useful to provide suggestions. If a rural county has high food insecurity, high LILA percentages, and a high share of zero‑vehicle households, a policy recommendation might combine public transit and grocery‑store investment. Another suggestion could be that if poverty rate is the dominant co‑factor, income‑support programs may be an effective policy.
 
-# Data quality: 
+## Map the Meal Gap (MMG)
+### Location
+The original file is located in [this Box folder](https://uofi.box.com/s/73j874awu6svsiwn25d8s6nbc5frxmqw) because the data is not publicly available. 
+### Structure
+The data was shared with us in an excel file that contained all Map the Meal Gap data from 2019 to 2023. This file contains six sheets. The two we used are ‘Read Me’ which is a data dictionary and `County` which contains the county level data. The other spreadsheets contain data aggregated by different units, like state and congressional district, which were not useful for our analysis. The size of the spreadsheet is 2.5MB. 
 
-## Food Atlas (FARA) Data Quailty Assesment
+Each row corresponds to a county. The column attributes can be grouped as follows:
+- **identifiers and geography** - FIPS, state code, and county name
+- **percent and number of food insecure** - total and breakdown for race (White, Black, Latine) and age (children) 
+- **SNAP** - related to the Supplemental Nutrition Access Program, which many food insecure people are a part of 
+- **cost and budget** - amount of money needed to purchase meals and current budget deficit 
+
+### Content
+The following columns are relevant to our analysis after data cleaning. Note that during the cleaning process, all of the column names were changed to better reflect the combined dataset. 
+| Column Name                                  | Description                                                                                                                                              |
+|----------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| FIPS                                         | Federal Information Processing Standards code for each county                                                                                            |
+| State                                        | Two letter state code                                                                                                                                    |
+| County                                       | County name                                                                                                                                              |
+| pctFoodInsecure, numFoodInsecure             | Percent/number of people who are food insecure                                                                                                           |
+| pctBlackFoodInsecure                         | Percent of Black people who are food insecure                                                                                                            |
+| pctLatineFoodInsecure                        | Percent of Latine people who are food insecure                                                                                                           |
+| pctWhiteFoodInsecure                         | Percent of White people who are food insecure                                                                                                            |
+| pctFIbelowSNAP, pctFIaboveSNAP               | Percent of food insecure people whose income is above and below the threshold for SNAP                                                                   |
+| pctKidsFoodInsecure, numKidsFoodInsecure     | Percent/number of kids who are food insecure                                                                                                             |
+| pctKidsIncomeBelow185, pctKidsIncomeAbove185 | Percent of food insecure kids who live above and below 185% of the federal poverty line, which is the cutoff for many food assistance programs for kids  |
+| costPerMeal                                  | Average amount spent per meal                                                                                                                            |
+| weeklyFoodBudget                             | Amount of money needed per week for food insecure person to pay for food                                                                                 |
+| weeklyBudgetFoodInsecureByPop                | weeklyFoodBudget multiplied by population                                                                                                                |
+| rangeRuralUrban                              | Rural-Urban Continuum Code, ranges from 1 to 9                                                                                                           |
+
+### Constraints 
+#### Ethical
+All of the data is aggregated at the county level, there is no risk of tracing the data back to an individual. 
+#### Legal
+The Map the Meal Gap data is not publicly available. We requested the data through a form on the Feeding America website. In order to not publicize the data, we have uploaded it to a Box folder that requires U of I credentials to access it. We were requested to read the documentation for the data to ensure that we used it responsibly and to share any report we produced with them. We were not able to find a license for the data in any of the documentation. 
+### Relation to Research Questions
+The data contains a column with the Rural Urban Continuum Code, which ranges from 1 to 9 and is based on the population in each county and whether or not the county is adjacent to a metro area. Codes 1 to 3 represent metro counties and codes 4 to 9 represent nonmetro counties. We can use this column to measure how rural or urban the county is, or create a binary flag based on a threshold.   
+
+It also contains county-level data which, when combined with the Food Access Research Atlas can give a more holistic view of food insecurity. Food access is one part of being food insecure, but does not necessarily take into account the budget of each person or the type of food store they are near. We can also pinpoint which counties have the highest rates of food insecurity and use the combined datasets to identify which factors may be causing this. 
+
+
+
+# Data quality 
+
+## Food Atlas Research Atlas (FARA)
 
 ### Accuracy
 The dataset appears to be accurate. The FARA (Food Access Research Atlas) dataset was checked for negative values, and none appear in the dataset, which is an indicator of accurate data of this nature (counts, percentages and flags).
@@ -114,7 +174,23 @@ Economic Research Service (ERS), U.S. Department of Agriculture (USDA). Food Acc
 ### Consistency
 The data appears to be consistent. The low-access population does not exceed total population, percentages are within [0,100], the values in the urban/rural flag columns were only 0 and 1, and there are no duplicate values in the CensusTract column. 
 
-# Data cleaning: 
+## Map the Meal Gap (MMG)
+### Accuracy
+The documentation notes that the food insecurity percentages for each county are estimates based off of data from the Current Population Survey from the Bureau of Labor Statistics. The estimates produced from their models may not reflect the actual percentage of food insecurity because they are dependent on the available data. For example, there is no data about underemployment (when people are employed but not making enough money), so this variable cannot be included. However, underemployed people are likely being estimated as food insecure. 
+We checked the dataset to ensure that all of the state codes were correct and that the urban/rural designation for each county is between 1 and 9. 
+### Completeness 
+There are many missing values for food insecurity rates broken down by race (find actual number). This is because there was not always enough publicly available data for Feeding America to create reliable estimates. In addition, they did not include counts for each race, only the percentage, as the small sample sizes created large confidence intervals. The documentation recommends combining the estimates from the map with local data and conversations with people facing food insecurity in the county, as providing numbers could be misleading. 
+Refer to the maps below to see which counties have data for food insecurity for each race. We observe that estimates for Black people are present mostly in the South, while estimates for Latine people are present except for parts of the Midwest and New England. There are only a few counties missing estimates for White people. 
+There are no missing values in any of the other columns. 
+### Timeliness
+Feeding America updates Map the Meal Gap every year; however, we chose to use the data from 2019 because that matches the timeliness of the other dataset. (The Food Access Research Atlas is calculated based on data from 2019.) The food insecurity estimates are likely to change every year while the county and state names, as well as the corresponding FIPS code, remain the same throughout and can be used for combining datasets and for comparison between years. This data is suitable for our needs because it is fairly recent and still provides a good estimate of food insecurity in 2026. 
+### Consistency
+- We checked to ensure that the percentage values were in between 0 and 100.
+- We checked that each of the FIPS codes are unique because they should each correspond to a different county. 
+- We checked that the combination of state code and county is unique. Some counties may have the same name in different states (for example, Urbana, IL and Urbana, IN) so this county name alone is not a unique identifier. 
+
+
+# Data cleaning 
 
 ## Year Filtering (2019)
 
@@ -229,9 +305,60 @@ def strip_dollar(series, dtype):
 Cleaning these numerical columns will allow for creating visualizations and data analysis. 
 
 
-# Findings: 
+# Findings
+**Research Question #1: Do families living in rural areas have higher rates of food insecurity compared to families living in urban areas?** 
 
-# Future work:
+We created two maps to show the difference in food insecurity rates in both the rural and urban areas at both the state level and the county level. 
+
+For the state level, we aggregate the data by taking the mean of the food insecurity rate for all rural and urban counties in each state. Then we calculated the difference between the two averages, which are plotted on the left. The state is a shade of red if the rural average is higher and a shade of blue if the urban average is higher. We can see that most states have a higher food insecurity rate among rural counties, with the exception of North Dakota and a couple states in New England. The county level data is plotted directly, with rural counties represented with red and urban counties represented with blue. We can see that there are more urban tracts with high rates of food insecurity (around 20%). 
+![map](https://github.com/LaraTerpetschnig/Canaries/blob/main/visualizations/urban_rural_food_insecurity.png)
+
+We also filtered the data by race to create the same maps for Black, Latine, and White individuals. Because of a lack of data for Black and Latine populations, some states are grey to indicate that we were not able to calculate an average for that state. 
+![map_white](https://github.com/LaraTerpetschnig/Canaries/blob/main/visualizations/urban_rural_pct_white_food_insecure.png)
+![map_black](https://github.com/LaraTerpetschnig/Canaries/blob/main/visualizations/urban_rural_pct_black_food_insecure.png)
+![map_latine](https://github.com/LaraTerpetschnig/Canaries/blob/main/visualizations/urban_rural_pct_latine_food_insecure.png)
+ 
+**Research Question #2: How does food access (measured by the Food Access Research Atlas) and food insecurity (measured by Map the Meal Gap) overlap?** 
+
+By combining the two datasets, we were able to see the impact of poverty on food insecurity. As we expected, there is a high overlap between counties with a high food insecurity rate (over 20% and a high poverty rate (over 30%). 
+
+In addition, we were able to compare counties designated as low income and low access by the Food Access Research Atlas with the food insecurity rate. There was some overlap between these designations in Utah and the Dakotas however, parts of Mississippi and Arkansas were designated as fairly high income and access while still having a high food insecurity rate. This could be because there are other factors that contribute to food insecurity and we may have lost some granularity by averaging the Food Access Research Atlas data for each county, as it was originally by census tract. 
+
+![map_compare](https://github.com/LaraTerpetschnig/Canaries/blob/main/visualizations/mmg_fara_test_maps.png)
+
+**Research Questions #3: Which counties in the US suffer from the highest rates of food insecurity?**
+
+We made a bar graph of the counties with the highest food insecurity rates in the nation. Most of these counties were in the South (Mississippi, Arkansas, Kentucky). The county with the highest rate of food insecurity is Issaquena County, which has a population that is 62.2% Black. Systematic racism and redlining still have an impact today which can be seen through the location of food stores, which contribute to food insecurity. In general, states in the South have a higher food insecurity rate. The top five most food insecure states are all in the South. 
+Three of the counties were in South Dakota, with the highest in the state being Oglala Lakota County, which is part of a Lakota reservation. This highlights how Native American reservations are especially vulnerable, likely due to historical factors like being driven out of their ancestral land and systematic racism. 
+Future federal programs could use this data to target counties within reservations with additional resources. 
+
+![bar_graph](https://github.com/LaraTerpetschnig/Canaries/blob/main/visualizations/Average_Food_Insecurity_Rate_State.png)
+
+For addition visualization, check the `visualizations` folder. 
+
+## Modeling 
+### Is Population Count a Better Predictor of Food Insecurity Than Urban/Rural Classification?
+
+We can see a distribution of the number of states within each code (1 through 9) below.
+
+At the U.S. county level, does 2010 Census population (`Pop2010`) or urban/rural status (`Urban`) better predict the share of the population that is food insecure (`pctFoodInsecure`)?
+
+To answer our research question, we ran an OLS linear regression with `pctFoodInsecure ~ log₁₀(Pop2010) + Urban_prop`.
+**A: Urban/rural classification is the stronger predictor than county population count**
+
+
+### OLS Results: `pctFoodInsecure ~ log₁₀(Pop2010) + Urban_prop`
+
+
+| Predictor | Coefficient | Standardized β | p-value |
+|---|---|---|---|
+| log₁₀(Pop2010) | −0.0009 | ~−0.024 | 0.577 — not significant |
+| Urban_prop | −0.0224 | ~−0.160 | < 0.001 — significant |
+
+We can see that the rural-urban designation is a better predictor, but only slightly. They are both very weak.
+
+
+# Future work
 
 ## Mapping Alaska, Hawaii, and US Territories
 We were only able to include the contiguous United States in our maps because of a lack of space and familiarity with the geopandas software. However, these two states are greatly affected by food insecurity as they have to import a lot of their food. Alaska is a fairly rural state which has a lot of low access areas. We are also missing data about the US Territories, such as Puerto Rico, which also face a similar issue. Because of the Jones Act of 1920 all goods imported to Puerto Rico must come from the US, which adds additional costs. It would be interesting to specifically explore these parts of the US which were not present in our analysis but which face additional challenges. 
@@ -243,9 +370,18 @@ We only used a simple linear regression model to examine the relationship betwee
 Feeding America has an interactive visualization for their Map the Meal Gap Data, which allows users to filter the data by race and age, as well as view data at the state and county levels. Hovering over a section of the map also brings up additional information. We could also create interactive visualizations using the altair library in python. For example, hovering over a state could show the specific value associated with it so viewers don’t just have to rely on the color scale. 
 
 
-# Challenges: 
+# Challenges 
+## Merging the data
+We originally merged the datasets together before our second checkpoint on a combination of the county name and state. In the process, we dropped the FIPS code, which we thought was irrelevant. We later learned that FIPS (Federal Information Processing Standard) is a standardized five number code that uniquely identifies each county, and it is helpful for visualizing data with mapping software like geopandas. For example, the FIPS code for Champaign County is 17019. We merged the data a second time on the FIPS code. This was also necessary to combine the official state and county borders with our data. 
+## File Size
+The Food Access Research Atlas dataset is about 45MB, so it is close to the limit for file size in Github, which is 50MB. When we first tried to upload the dataset, we got an error saying that it was too large to push. We decided to separate the dataset into three “chunks” which were about 15MB each. We then combined them into one dataframe which was stored locally. However, we were later able to successfully push the original dataset to Github and deleted those files. We are unsure what originally caused the error as the dataset was not technically outside of the limits. 
+## Large Feature Size
+Both of our datasets had a large number of columns. The Food Access Research Atlas dataset originally had 147 columns, many of which were named in a way that confused us (ex. PCTGQTRS). The Map the Meal Gap dataset had 24 columns, which were in an excel spreadsheet that had long names for each column (ex. % food insecure children in HH w/ HH incomes below 185 FPL). In order to make the large volume of data easier to understand, we went through each column and looked at the documentation to understand what it meant so we could rename it. This took a couple hours but it helped us figure out which columns we wanted to focus on for our analysis. Although our naming schema may still be confusing, we think it is more human-readable while still being concise enough to be used for data analysis. 
+## Large Amount of Missing Data
+Both datasets contain breakdowns for race and ethnicity. The Food Access Research Atlas contains categories for White, Black, Asian, Native Hawaiian or Other Pacific Islander, American Indian or Alaska Native, and Other/multiple race as well as Hispanic or Latino. These categories are from the 2010 census. Map the Meal Gap contains data about Black, Latine, and White individuals. There is a lot of missing data for any race that is not White. We considered dropping these rows, but this would remove rows that have useful information in other columns. Instead, we decided to highlight these missing values in our visualizations to show that there may be counties with high food insecurity rates for minorities that we have not identified. There are also minority groups that are not represented in the data as Map the Meal Gap has only three categories for race. Despite this, we know that American Indian/Native American people face very high rates of food insecurity.
 
-# Reproducing: 
+
+# Reproduction 
 
 ### Python version
 The project was created and tested on Python 3.12.3. 
