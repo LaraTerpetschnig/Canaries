@@ -1,6 +1,6 @@
 # Title: Urban & Rural Divides in U.S. Food Insecurity
 
-# Contributors: Lily Rybka, Lara Terpetschnig
+# Contributors: Lily Rybka, Lara Terpetschnig (Team: Canaries)
 
 # Summary: []
 
