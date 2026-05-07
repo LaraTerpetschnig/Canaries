@@ -26,19 +26,20 @@ In this project, we clean and combine two datasets related to food access and fo
 Each dataset has valuable information that we were able to compare when they were combined. Food access and food insecurity have some overlap but access does not account for all cases of food insecurity. We found that counties that are designated as rural have a high rate of food insecurity compared to counties designated as urban. Furthermore, the Rural Urban Continuum Code is a better indicator of food insecurity compared to population per county. Finally, counties in Southern states tend to have the worst rates of food insecurity, with Mississippi having the highest average food insecurity rate out of the 50 states. 
 
 ## Project Tree
-Canaries/
-│
-├── README.md                          
+<pre>
+Canaries/    
+│        
+├── README.md                           
 │
 ├── data/                              
-│   ├── Food Access Research Atlas.csv 
-│   ├── Meal_Gap_2019.csv              
-│   ├── MMG_FARA_2019_county.csv  
-│
-├── hash digest/                    
-│   ├── fara.sha                      
-│   └── mmg.sha                        
-│
+│   ├── Food Access Research Atlas.csv       
+│   ├── Meal_Gap_2019.csv                 
+│   ├── MMG_FARA_2019_county.csv     
+│     
+├── hash digest/                       
+│   ├── fara.sha                        
+│   └── mmg.sha                          
+│      
 ├── notebooks/                          
 │   ├── data_integrity.ipynb              
 │   ├── food_atlas_data_quality.ipynb  
@@ -47,16 +48,16 @@ Canaries/
 │   ├── bar_graph.ipynb             
 │   ├── geo_visuals.ipynb    
 │   ├── geo_NaN_visuals.ipynb        
-│   └── linear_regression_model.ipynb 
+│   └── linear_regression_model.ipynb     
 └── visualizations/                
-    ├── High/Low_Food_Insecurity_Rates.png
-    ├── urban_rural_food_insecurity.png
-    ├── urban_rural_pct_black/kids/latine/white_food_insecure.png
-    ├── urban_rural_poverty_rate.png
-    ├── urban_rural_weekly_food_budget.png
-    ├── mmg_fara_test_maps.png
-    └── missing_*_data_map.png  (* maps of missingness by variable)
-
+    ├── High/Low_Food_Insecurity_Rates.png   
+    ├── urban_rural_food_insecurity.png    
+    ├── urban_rural_pct_black/kids/latine/white_food_insecure.png    
+    ├── urban_rural_poverty_rate.png    
+    ├── urban_rural_weekly_food_budget.png    
+    ├── mmg_fara_test_maps.png   
+    └── missing_*_data_map.png  (* maps of missingness by variable)    
+</pre>
 # Data profile 
 
 ## Food Access Research Atlas (FARA)
@@ -487,6 +488,6 @@ Issaquena County, MS | Data USA. (2024). Datausa.io. https://datausa.io/profile/
 U.S. Census Bureau. TIGER/Line Shapefiles. [2026]. Available at: https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html."
 
 # Licenses
-Python: Zero-Clause BSD
-VSCode: MIT
+**Python**: Zero-Clause BSD        
+**VSCode**: MIT
 
