@@ -1,6 +1,11 @@
 # Urban & Rural Divides in U.S. Food Insecurity
 
-## Lily Rybka, Lara Terpetschnig (Team: Canaries)
+## Contributors:
+
+- Lily Rybka
+-  Lara Terpetschnig 
+
+(Team: Canaries)
 
 # Summary
 ## Motivation
@@ -20,6 +25,37 @@ In this project, we clean and combine two datasets related to food access and fo
 ## Findings
 Each dataset has valuable information that we were able to compare when they were combined. Food access and food insecurity have some overlap but access does not account for all cases of food insecurity. We found that counties that are designated as rural have a high rate of food insecurity compared to counties designated as urban. Furthermore, the Rural Urban Continuum Code is a better indicator of food insecurity compared to population per county. Finally, counties in Southern states tend to have the worst rates of food insecurity, with Mississippi having the highest average food insecurity rate out of the 50 states. 
 
+## Project Tree
+Canaries/
+│
+├── README.md                          
+│
+├── data/                              
+│   ├── Food Access Research Atlas.csv 
+│   ├── Meal_Gap_2019.csv              
+│   ├── MMG_FARA_2019_county.csv  
+│
+├── hash digest/                    
+│   ├── fara.sha                      
+│   └── mmg.sha                        
+│
+├── notebooks/                          
+│   ├── data_integrity.ipynb              
+│   ├── food_atlas_data_quality.ipynb  
+│   ├── meal_gap_data_quality.ipynb    
+│   ├── data_merge_fips.ipynb   
+│   ├── bar_graph.ipynb             
+│   ├── geo_visuals.ipynb    
+│   ├── geo_NaN_visuals.ipynb        
+│   └── linear_regression_model.ipynb 
+└── visualizations/                
+    ├── High/Low_Food_Insecurity_Rates.png
+    ├── urban_rural_food_insecurity.png
+    ├── urban_rural_pct_black/kids/latine/white_food_insecure.png
+    ├── urban_rural_poverty_rate.png
+    ├── urban_rural_weekly_food_budget.png
+    ├── mmg_fara_test_maps.png
+    └── missing_*_data_map.png  (* maps of missingness by variable)
 
 # Data profile 
 
@@ -437,3 +473,14 @@ python run_all.py
 ```
 
 # References: 
+Dewey, A., Hilvers, J., Dawes, S., Harris, V., Hake, M., and Engelhard, E.
+ (2025). Map the Meal Gap: A Report of Local Food Insecurity and Food Costs in the United
+ States in 2023. Feeding America National Organization.
+ https://www.feedingamerica.org/research/map-the-meal-gap/overall-executive-summary
+
+Economic Research Service (ERS), U.S. Department of Agriculture (USDA). Food Access Research Atlas, https://www.ers.usda.gov/data-products/food-access-research-atlas/
+
+geopandas/geopandas: Version 1.1.3 geopandas.org/
+
+"U.S. Census Bureau. TIGER/Line Shapefiles. [2026]. Available at: https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html."
+
