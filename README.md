@@ -472,7 +472,7 @@ From the project root directory:
 python run_all.py
 ```
 
-# References: 
+# References 
 Dewey, A., Hilvers, J., Dawes, S., Harris, V., Hake, M., and Engelhard, E.
  (2025). Map the Meal Gap: A Report of Local Food Insecurity and Food Costs in the United
  States in 2023. Feeding America National Organization.
@@ -482,5 +482,11 @@ Economic Research Service (ERS), U.S. Department of Agriculture (USDA). Food Acc
 
 geopandas/geopandas: Version 1.1.3 geopandas.org/
 
-"U.S. Census Bureau. TIGER/Line Shapefiles. [2026]. Available at: https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html."
+Issaquena County, MS | Data USA. (2024). Datausa.io. https://datausa.io/profile/geo/issaquena-county-ms#demographics
+
+U.S. Census Bureau. TIGER/Line Shapefiles. [2026]. Available at: https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html."
+
+# Licenses
+Python: Zero-Clause BSD
+VSCode: MIT
 
