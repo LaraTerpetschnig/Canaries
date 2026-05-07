@@ -233,6 +233,16 @@ Cleaning these numerical columns will allow for creating visualizations and data
 
 # Future work:
 
+## Mapping Alaska, Hawaii, and US Territories
+We were only able to include the contiguous United States in our maps because of a lack of space and familiarity with the geopandas software. However, these two states are greatly affected by food insecurity as they have to import a lot of their food. Alaska is a fairly rural state which has a lot of low access areas. We are also missing data about the US Territories, such as Puerto Rico, which also face a similar issue. Because of the Jones Act of 1920 all goods imported to Puerto Rico must come from the US, which adds additional costs. It would be interesting to specifically explore these parts of the US which were not present in our analysis but which face additional challenges. 
+
+## Modeling 
+We only used a simple linear regression model to examine the relationship between food insecurity and population in each county as well as the urban/rural designation. This model helped us understand which variable had a stronger relationship, but both models had poor predictive power. In the future, we could add more features to try to predict this percentage. It is likely that poverty rate and cost per meal also have an impact on our response variable. We could also try using a beta regression model which will take into account the bounds on our response variable (a percentage between 0 and 1). 
+
+## Interactive Visualizations
+Feeding America has an interactive visualization for their Map the Meal Gap Data, which allows users to filter the data by race and age, as well as view data at the state and county levels. Hovering over a section of the map also brings up additional information. We could also create interactive visualizations using the altair library in python. For example, hovering over a state could show the specific value associated with it so viewers don’t just have to rely on the color scale. 
+
+
 # Challenges: 
 
 # Reproducing: 
