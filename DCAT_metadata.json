@@ -1,0 +1,50 @@
+{
+  "@type": "dcat:Dataset",
+  "dct:title": "Canaries: Food Access and Food Insecurity Analysis",
+  "dct:description": "County-level analysis of the relationship between food access (USDA Food Access Research Atlas) and food insecurity (Feeding America Map the Meal Gap) across the United States. Includes geospatial visualizations, and data quailty analysis. Developed as a final project for IS477 at the University of Illinois Urbana-Champaign.",
+  "dct:creator": {
+    "@type": "foaf:Group",
+    "foaf:name": "Lily Rybka and Lara Terpetschnig"
+  },
+  "dct:publisher": {
+    "@type": "foaf:Organization",
+    "foaf:name": "University of Illinois Urbana-Champaign, School of Information Sciences",
+    "foaf:homepage": "https://ischool.illinois.edu"
+  },
+  "dct:license": "https://opensource.org/licenses/MIT",
+  "dct:rights": "Code and analysis outputs are released under the MIT License. Reproduction requires the restricted Feeding America MMG dataset, which must be requested separately.",
+  "dct:accessRights": "Partially open — code and FARA-derived outputs are publicly accessible; the MMG input file is restricted to authorized requestors.",
+  "dct:temporal": {
+    "@type": "dct:PeriodOfTime",
+    "dcat:startDate": {"@value": "2019", "@type": "xsd:gYear"},
+    "dcat:endDate":   {"@value": "2023", "@type": "xsd:gYear"}
+  },
+  "dct:spatial": {
+    "@type": "dct:Location",
+    "skos:prefLabel": "United States (county level)"
+  },
+  "dct:issued": {"@value": "2026-05-06", "@type": "xsd:date"},
+  "dcat:keyword": [
+    "food insecurity", "food access", "food desert",
+    "USDA", "Feeding America", "county",
+    "geospatial", "United States"
+  ],
+  "dcat:distribution": [
+    {
+      "@type": "dcat:Distribution",
+      "dct:title": "Food Access Research Atlas (FARA)",
+      "dct:description": "Public dataset from the USDA Economic Research Service describing food access at the census-tract level.",
+      "dcat:accessURL": "https://www.ers.usda.gov/data-products/food-access-research-atlas/",
+      "dcat:mediaType": "text/csv",
+      "dct:accessRights": "Public"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "dct:title": "Map the Meal Gap 2025 (MMG), 2019–2023 data",
+      "dct:description": "By resuest dataset from Feeding America providing food insecurity data.",
+      "dcat:accessURL": "https://www.feedingamerica.org/research/map-the-meal-gap",
+      "dcat:mediaType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "dct:accessRights": "Must be requested from Feeding America"
+    }
+  ]
+}
